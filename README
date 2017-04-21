@@ -1,0 +1,35 @@
+DbModels folder
+--------------------------------------------------------------------------------
+Contains one file: Transaction.js which is the db model for a transaction.
+
+
+Repositories folder
+--------------------------------------------------------------------------------
+Contains one file: TransactionRepository.js that has 3 methods for manipulating
+transactions.
+
+Add(): Persists a transaction in mongodb. Returns success: true and the object
+that was just inserted if everything was ok. Returns success: false and an error
+message if something went wrong.
+
+GetAllUserTransactions(): Agregates all the transactions that an user was part
+of (receiver/sender), and are between the start and end of a specified day,
+and the amount of the transaction is greater than a given value.
+
+GetUserBalanceInInterval(): Agregates all the data for a given user. Groups the
+data taking into account if the user was the sender or the receiver. It will
+return an object that will contain 'payed', 'received' and 'balance' for 
+that user in the specified timeframe.
+
+server.js
+--------------------------------------------------------------------------------
+For each route I call the methods from TransactionRepository.js file.
+
+For the GET /transactions route I've done a bit of preocessing before calling
+the GetAllUserTransactions(). I assumed that the day is going to be provided
+as a timestamp. I computed the start and end of that day (timestamps).
+
+E.g.
+If the provided day(timestamp)  would be: 1492797509 => then the start timestamp
+of the day containing the provided timestamp would be 1492732800, and the end 
+timestamp of the day containing the ts provided would be 1492819199.

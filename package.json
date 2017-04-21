@@ -1,0 +1,10 @@
+{
+    "name": "hootsuite_hw2017",
+    "author": "Catalin Oancea",
+    "private": true,
+    "dependencies": {
+        "express": "*",
+        "mongoose": "*",
+        "body-parser": "*"
+    }
+}
